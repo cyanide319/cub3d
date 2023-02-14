@@ -6,7 +6,7 @@
 #    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/14 14:28:27 by tbeaudoi         ###   ########.fr        #
+#    Updated: 2023/02/14 16:17:30 by tbeaudoi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ LIBMLX = MLX42/
 MLX42 = MLX42/build/libmlx42.a
 
 SRCS = src/cub3d.c \
+		src/error.c \
+		src/parsing.c \
 			 
 OBJS = $(SRCS:.c=.o)
 
