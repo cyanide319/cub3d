@@ -6,6 +6,7 @@
 *.ko
 *.obj
 *.elf
+*.tar
 
 # Linker output
 *.ilk
@@ -35,12 +36,14 @@
 *.i*86
 *.x86_64
 *.hex
+cub3d
 
 # Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
+launch.json
 
 # Kernel Module Compile Results
 *.mod*
@@ -50,3 +53,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Apple Crap
+.DS_Store
