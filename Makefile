@@ -6,7 +6,7 @@
 #    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/14 13:28:47 by tbeaudoi         ###   ########.fr        #
+#    Updated: 2023/02/14 13:43:06 by tbeaudoi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,8 @@ $(NAME): $(OBJS) $(MLX42)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(MLX42) -I include -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
 
 build: $(MLX42)
-	cmake -B buildml ./MLX42/
-	cmake --build build -j4 ./MLX42/
+	@cmake ./MLX42/ -B build
+	@cmake ./MLX42/ --build build -j4
 
 clean:
 	@$(RM) $(OBJS)

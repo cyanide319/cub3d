@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/Users/tbeaudoi/Documents/cub3d/cub3d/MLX42")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/Users/tbeaudoi/Documents/cub3d/cub3d/buildml")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/Users/tbeaudoi/Documents/cub3d/cub3d/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

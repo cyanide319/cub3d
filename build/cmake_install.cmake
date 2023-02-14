@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/tbeaudoi/Documents/cub3d/cub3d/buildml/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/tbeaudoi/Documents/cub3d/cub3d/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
