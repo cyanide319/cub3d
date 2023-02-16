@@ -44,6 +44,7 @@ cub3d
 *.idb
 *.pdb
 launch.json
+settings.json
 
 # Kernel Module Compile Results
 *.mod*
