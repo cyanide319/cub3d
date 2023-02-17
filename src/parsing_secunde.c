@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/16 18:44:33 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:34:24 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	parse_line(char *str)
 		ret = 5;
 	else if (split[0][0] == 'c' || split[0][0] == 'C')
 		ret = 6;
+	free_tab(&split);
 	return (ret);
 }
 

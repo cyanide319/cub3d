@@ -6,7 +6,7 @@
 #    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/16 15:21:41 by tbeaudoi         ###   ########.fr        #
+#    Updated: 2023/02/17 18:14:11 by tbeaudoi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = src/cub3d.c \
 		src/error.c \
 		src/parsing_prime.c \
 		src/parsing_secunde.c \
+		src/parsing_tertie.c \
 		src/utils_prime.c \
 			 
 OBJS = $(SRCS:.c=.o)

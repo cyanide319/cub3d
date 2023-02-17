@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/16 19:05:20 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:13:51 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_file_format(char *str)
 	return (0);
 }
 
-	// map->raw_map = ft_calloc(sizeof(char *), 2);
+// map->raw_map = ft_calloc(sizeof(char *), 2);
 int	get_map(t_game *game, t_map *map)
 {
 	char	*temp;
@@ -100,9 +100,11 @@ int	parsing(t_game *game, t_map *map, char *argv)
 {
 	if (check_file_format(argv) < 0)
 		return (print_error(game, map, "Bad file format. Must be .cub"));
-	if (open_map(game, argv) < 0 || get_map(game, map))
+	if (open_map(game, argv) < 0 || get_map(game, map) < 0)
 		return (print_error(game, map, "Bad file."));
 	if (get_map_data(map) < 0)
-		return (print_error(game, map, "Your fucking map is wrong."));
+		return (print_error(game, map, "Your fucking map is fucking wrong."));
+	if (check_texture_files(map) < 0)
+		return (print_error(game, map, "Bad texture file."));
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:26:37 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/16 17:52:25 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:59:10 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	*ft_realloc_tab(char **ptr, size_t size)
+char	**ft_realloc_tab(char **ptr, size_t size)
 {
 	void	*new_ptr;
 

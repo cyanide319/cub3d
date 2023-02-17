@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:43:13 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/16 14:32:15 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:54:33 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ size_t	ft_strlen1(char *s);
 
 int		free_ptr(void **ptr);
 void	*free_tab(char ***ptab);
-void	*ft_realloc_tab(char **ptr, size_t size);
+char	**ft_realloc_tab(char **ptr, size_t size);
 
 #endif

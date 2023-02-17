@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/16 19:06:49 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:10:47 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int		parsing(t_game *game, t_map *map, char *argv);
 char	*format_string(char *str);
 int		*split_rgb(char *str);
 int		parse_line(char *str);
+int		check_img_file(char *str);
+int		check_texture_files(t_map *map);
 
 //Errors and exit
 int		print_error(t_game *game, t_map *map, char *str);
