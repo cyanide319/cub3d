@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/16 12:14:34 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:05:20 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	check_file_format(char *str)
 	return (0);
 }
 
+	// map->raw_map = ft_calloc(sizeof(char *), 2);
 int	get_map(t_game *game, t_map *map)
 {
 	char	*temp;
@@ -42,47 +43,66 @@ int	get_map(t_game *game, t_map *map)
 	i = 0;
 	temp = get_next_line(game->fd);
 	if (temp == NULL)
-		return (print_error_n_free("Bad file", &temp));
-	map->map = ft_calloc(sizeof(char *), 1);
+		return (-1);
 	while (temp != NULL)
 	{
 		if (temp[0] != '\n')
-		{
-			map->map[i] = ft_strdup(temp);
-			printf("%s", map->map[i]);
-		}
+			map->raw_map[i] = ft_strdup(temp);
 		free(temp);
 		temp = get_next_line(game->fd);
 		if (temp != NULL && temp[0] != '\n')
 		{
-			map->map = ft_realloc_tab(map->map, i + 2);
+			map->raw_map = ft_realloc_tab(map->raw_map, i + 2);
 			i++;
 		}
 	}
-	close (game->fd);
-	return (0);
+	return (close (game->fd));
 }
 
 int	open_map(t_game *game, char *argv)
 {
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd <= 0)
-		return (print_error("Bad file"));
+		return (-1);
 	return (0);
 }
 
-int	parsing(char *argv)
+int	get_map_data(t_map *map)
 {
-	t_map	*map;
-	t_game	*game;
+	int	i;
+	int	j;
 
-	game = ft_calloc(sizeof(t_game), 1);
-	map = ft_calloc(sizeof(t_map), 1);
+	i = 1;
+	j = 0;
+	while (i < 7)
+	{
+		j = parse_line(map->raw_map[i]);
+		if (j == 1)
+			map->wall_no = format_string(map->raw_map[i]);
+		else if (j == 2)
+			map->wall_so = format_string(map->raw_map[i]);
+		else if (j == 3)
+			map->wall_ea = format_string(map->raw_map[i]);
+		else if (j == 4)
+			map->wall_we = format_string(map->raw_map[i]);
+		else if (j == 5)
+			map->color_floor = split_rgb(map->raw_map[i]);
+		else if (j == 6)
+			map->color_ceil = split_rgb(map->raw_map[i]);
+		else
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	parsing(t_game *game, t_map *map, char *argv)
+{
 	if (check_file_format(argv) < 0)
-		return (print_error("Bad file format. Must be .cub"));
+		return (print_error(game, map, "Bad file format. Must be .cub"));
 	if (open_map(game, argv) < 0 || get_map(game, map))
-		return (-1);
-	printf("parsing successful");
-	exit (1);
+		return (print_error(game, map, "Bad file."));
+	if (get_map_data(map) < 0)
+		return (print_error(game, map, "Your fucking map is wrong."));
 	return (0);
 }

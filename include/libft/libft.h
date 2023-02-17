@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:43:13 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/14 12:46:20 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:32:15 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
+int		ft_iswhitespace(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
@@ -79,5 +80,9 @@ char	*get_next_line(int fd);
 char	*ft_strjoin1(char *s1, char *s2);
 char	*ft_strchr1(char *str, int c);
 size_t	ft_strlen1(char *s);
+
+int		free_ptr(void **ptr);
+void	*free_tab(char ***ptab);
+void	*ft_realloc_tab(char **ptr, size_t size);
 
 #endif
