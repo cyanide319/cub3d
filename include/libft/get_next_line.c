@@ -6,13 +6,12 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 14:16:40 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/14 12:48:22 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/17 19:46:30 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// pull line from stash before the /n
 char	*stash_to_line(char *stash)
 {
 	char	*line;
@@ -38,8 +37,6 @@ char	*stash_to_line(char *stash)
 	return (line);
 }
 
-// free stash before the /n
-// take the rest of the buffer after /n and put it back in stash
 char	*free_stash(char *stash)
 {
 	char	*buffer;
@@ -66,11 +63,6 @@ char	*free_stash(char *stash)
 	return (buffer);
 }
 
-// read -> stash
-// stash -> line
-// return line
-// free stash
-// all over again until NULL
 char	*get_next_line(int fd)
 {
 	static char	*stash;

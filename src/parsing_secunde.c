@@ -6,11 +6,33 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:34:24 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:05:44 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../cub3d.h"
+
+int	copy_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 7;
+	while (map->raw_map[i] != NULL)
+		i++;
+	map->map = ft_calloc(sizeof(char *), (i - 6));
+	map->y_max = i - 8;
+	i = 7;
+	j = 0;
+	while (map->raw_map[i] != NULL)
+	{
+		map->map[j] = ft_strdup(map->raw_map[i]);
+		i++;
+		j++;
+	}
+	free_tab(&map->raw_map);
+	return (0);
+}
 
 int	parse_line(char *str)
 {
@@ -63,7 +85,7 @@ char	*format_string(char *str)
 	split = ft_split(str, ' ');
 	if (split == NULL)
 		return (NULL);
-	ret = ft_strdup(split[1]);
+	ret = split[1];
 	free_tab(&split);
 	return (ret);
 }
@@ -79,7 +101,7 @@ int	*split_rgb(char *str)
 		return (NULL);
 	split = ft_split(str, ' ');
 	nb = ft_split(split[1], ',');
-	if (check_digit(nb) != 0)
+	if (check_digit(nb) != 0 || nb[3])
 	{
 		free_tab(&split);
 		free_tab(&nb);

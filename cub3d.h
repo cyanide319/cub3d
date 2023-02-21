@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/17 18:10:47 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:53:59 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,26 @@
 // # include<>
 // # include<>
 
+# define CHR_SET "01NSEW"
+
 typedef struct s_map{
-	char	**raw_map;
-	char	**map;
-	int		flag;
-	int		*color_floor;
-	int		*color_ceil;
-	char	*wall_no;
-	char	*wall_so;
-	char	*wall_ea;
-	char	*wall_we;
+	char		**raw_map;
+	char		**map;
+	int			y_max;
+	int			flag;
+	int			*color_floor;
+	int			*color_ceil;
+	int			hex_color_floor;
+	int			hex_color_ceil;
+	char		*wall_no;
+	char		*wall_so;
+	char		*wall_ea;
+	char		*wall_we;
 }	t_map;
 
 typedef struct s_game{
 	t_map	*map;
 	int		fd;
-
 	void	*img;
 	void	*mlx_win;
 	void	*mlx;
@@ -51,6 +55,10 @@ int		*split_rgb(char *str);
 int		parse_line(char *str);
 int		check_img_file(char *str);
 int		check_texture_files(t_map *map);
+int		copy_map(t_map *map);
+int		check_frst_lines(t_map *map);
+int		check_valid_map(t_map *map);
+int		parse_colors(t_map *map);
 
 //Errors and exit
 int		print_error(t_game *game, t_map *map, char *str);

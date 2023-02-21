@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:11:18 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:54:10 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:27:45 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	print_error(t_game *game, t_map *map, char *str)
 
 int	clear_structs(t_game *game, t_map *map, int exit_code)
 {
-	free_ptr((void **)map->wall_no);
-	free_ptr((void **)map->wall_so);
-	free_ptr((void **)map->wall_ea);
-	free_ptr((void **)map->wall_we);
-	free_ptr((void **)map->color_ceil);
-	free_ptr((void **)map->color_floor);
+	// free_ptr((void **)map->wall_no);
+	// free_ptr((void **)map->wall_so);
+	// free_ptr((void **)map->wall_ea);
+	// free_ptr((void **)map->wall_we);
+	free(map->color_ceil);
+	free(map->color_floor);
 	if (map->raw_map != NULL)
 		free_tab(&map->raw_map);
 	if (map->map != NULL)

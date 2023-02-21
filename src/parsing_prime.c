@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/17 18:13:51 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:58:49 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,28 @@ int	check_file_format(char *str)
 	return (0);
 }
 
-// map->raw_map = ft_calloc(sizeof(char *), 2);
 int	get_map(t_game *game, t_map *map)
 {
 	char	*temp;
 	int		i;
 
-	i = 0;
+	i = 1;
 	temp = get_next_line(game->fd);
+	map->raw_map = NULL;
 	if (temp == NULL)
 		return (-1);
 	while (temp != NULL)
 	{
 		if (temp[0] != '\n')
-			map->raw_map[i] = ft_strdup(temp);
-		free(temp);
-		temp = get_next_line(game->fd);
-		if (temp != NULL && temp[0] != '\n')
 		{
-			map->raw_map = ft_realloc_tab(map->raw_map, i + 2);
+			map->raw_map = ft_realloc_tab(map->raw_map, i + 1);
+			map->raw_map[i] = temp;
+			printf("%s", map->raw_map[i]);
 			i++;
 		}
+		else
+			free(temp);
+		temp = get_next_line(game->fd);
 	}
 	return (close (game->fd));
 }
@@ -102,9 +103,11 @@ int	parsing(t_game *game, t_map *map, char *argv)
 		return (print_error(game, map, "Bad file format. Must be .cub"));
 	if (open_map(game, argv) < 0 || get_map(game, map) < 0)
 		return (print_error(game, map, "Bad file."));
-	if (get_map_data(map) < 0)
+	if (get_map_data(map) < 0 || parse_colors(map) < 0 || copy_map(map) < 0)
 		return (print_error(game, map, "Your fucking map is fucking wrong."));
-	if (check_texture_files(map) < 0)
-		return (print_error(game, map, "Bad texture file."));
+	// if (check_texture_files(map) < 0)
+	// 	return (print_error(game, map, "Bad texture file."));
+	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0)
+		return (print_error(game, map, "Map not closed."));
 	return (0);
 }
