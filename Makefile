@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
+#    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/21 14:40:03 by tbeaudoi         ###   ########.fr        #
+#    Updated: 2023/02/27 16:48:41 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,6 @@ RM = rm -f
 LIBFT = include/libft/libft.a
 LIBFT_PATH = include/libft/
 
-LIBMLX = MLX42/
-MLX42 = MLX42/build/libmlx42.a
-
 SRCS = src/cub3d.c \
 		src/error.c \
 		src/parsing_prime.c \
@@ -29,26 +26,22 @@ SRCS = src/cub3d.c \
 		src/parsing_tertie.c \
 		src/parsing_quarte.c \
 		src/utils_prime.c \
+		src/raycasting.c \
+		src/print.c \
+		src/texture.c \
+		src/move.c \
 			 
 OBJS = $(SRCS:.c=.o)
 
 all: 	$(NAME)
 
-$(MLX42):
-	@brew install glfw
-	@brew update
-
 $(NAME): $(OBJS) $(MLX42)
 	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(MLX42) -I include -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
-
-build:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $@ $^ $(LIBFT) 
 
 clean:
 	@$(RM) $(OBJS)
 	@make -C $(LIBFT_PATH)  clean
-	# @rm -f $(LIBMLX)/build
 
 fclean:	clean
 	@$(RM) $(NAME) $(LIBFT) 

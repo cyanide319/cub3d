@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/21 14:53:59 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:47:40 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 
 # include<stdio.h>
 # include"./include/libft/libft.h"
-# include"MLX42/include/MLX42/MLX42.h"
 # include<fcntl.h>
+#include<math.h>
+#include <mlx.h>
+# define WIN_WIDTH	500
+# define WIN_HEIGHT	500
+# define PI	3.14159265
+# define VISION 75
+# define FOWARD		13
+# define BACKWARD	1
+# define LEFT	0
+# define RIGHT	2
 // # include<>
 // # include<>
 // # include<>
@@ -48,6 +57,46 @@ typedef struct s_game{
 	void	*xpm;
 }	t_game;
 
+typedef struct s_img{
+	void	*pointer;
+	int		height;
+	int		width;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	char *screen_data;
+}	t_img;
+
+typedef struct s_ray{
+	int		position;
+	double	x;
+	double	y;
+	double	cos;
+	double	sin;
+	double	angle;
+	double	distance;
+	int		wall_h;
+}	t_ray;
+
+
+typedef struct s_data{
+	void *mlx;
+	void *window;
+	char **map;
+	double player_x;
+	double player_y;
+	double dir_x;
+	char *screen_data;
+	t_img img;
+	t_img text_n;
+	t_img text_s;
+	t_img text_e;
+	t_img text_w;
+	
+}	t_data;
+
+
+
 //Parsing
 int		parsing(t_game *game, t_map *map, char *argv);
 char	*format_string(char *str);
@@ -63,6 +112,13 @@ int		parse_colors(t_map *map);
 //Errors and exit
 int		print_error(t_game *game, t_map *map, char *str);
 int		clear_structs(t_game *game, t_map *map, int exit_code);
+
+// raycasting
+void	raycasting(t_data *data);
+
+//mouvements
+int	player_move(int keycode, t_data *data);
+void	print_window(t_data *data);
 
 //utils
 // int		free_ptr(void **ptr);
