@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:39:37 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 13:46:57 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:03:52 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	find_player(t_map *map)
 	int	y;
 	int	flag;
 
-	y = 0;
+	y = -1;
 	flag = 0;
-	while (map->map[y] != NULL)
+	while (map->map[++y] != NULL)
 	{
 		x = 0;
 		while (map->map[y][x] != '\n' && map->map[y][x] != '\0')
@@ -52,13 +52,15 @@ int	find_player(t_map *map)
 				if (flag == 1)
 					return (-1);
 				flag = 1;
+				map->player_y = y;
+				map->player_x = x;
 				map->p_orientation = map->map[y][x];
+				map->map[y][x] = 0;
 			}
 			x++;
 		}
-		y++;
 	}
-	return (0);
+	return (flag);
 }
 
 int	check_components(t_map *map)

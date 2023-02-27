@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 13:48:28 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:21:24 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	check_file_format(char *str)
 	return (0);
 }
 
-int	get_map(t_game *game, t_map *map)
+int	get_map(t_map *map)
 {
 	char	*temp;
 	int		i;
 
 	i = 1;
-	temp = get_next_line(game->fd);
+	temp = get_next_line(map->fd);
 	map->raw_map = NULL;
 	if (temp == NULL)
 		return (-1);
@@ -55,16 +55,16 @@ int	get_map(t_game *game, t_map *map)
 		}
 		else
 			free(temp);
-		temp = get_next_line(game->fd);
+		temp = get_next_line(map->fd);
 	}
 	printf("\n");
-	return (close (game->fd));
+	return (close (map->fd));
 }
 
-int	open_map(t_game *game, char *argv)
+int	open_map(t_map *map, char *argv)
 {
-	game->fd = open(argv, O_RDONLY);
-	if (game->fd <= 0)
+	map->fd = open(argv, O_RDONLY);
+	if (map->fd <= 0)
 		return (-1);
 	return (0);
 }
@@ -98,21 +98,21 @@ int	get_map_data(t_map *map)
 	return (0);
 }
 
-int	parsing(t_game *game, t_map *map, char *argv)
+int	parsing(t_map *map, char *argv)
 {
 	if (check_file_format(argv) < 0)
-		return (print_error(game, map, "Bad file format. Must be .cub"));
-	if (open_map(game, argv) < 0 || get_map(game, map) < 0)
-		return (print_error(game, map, "Bad file."));
+		return (print_error(map, "Bad file format. Must be .cub"));
+	if (open_map(map, argv) < 0 || get_map(map) < 0)
+		return (print_error(map, "Bad file."));
 	if (get_map_data(map) < 0 || parse_colors(map) < 0 || copy_map(map) < 0)
-		return (print_error(game, map, "Your fucking map is fucking wrong."));
+		return (print_error(map, "Your fucking map is fucking wrong."));
 	// if (check_texture_files(map) < 0)
 	// 	return (print_error(game, map, "Bad texture file."));
-	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0 
+	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0
 		|| check_components(map) < 0)
-		return (print_error(game, map, "Map invalid."));
-	if (find_player(map) < 0)
-		return (print_error(game, map, "Too many player."));
+		return (print_error(map, "Map invalid."));
+	if (find_player(map) < 1)
+		return (print_error(map, "Too many or not enough player."));
 	printf("%c", map->p_orientation);
 	exit (0);
 	return (0);
