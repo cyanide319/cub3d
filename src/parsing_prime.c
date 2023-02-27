@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/21 14:58:49 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:48:28 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	get_map(t_game *game, t_map *map)
 			free(temp);
 		temp = get_next_line(game->fd);
 	}
+	printf("\n");
 	return (close (game->fd));
 }
 
@@ -107,7 +108,12 @@ int	parsing(t_game *game, t_map *map, char *argv)
 		return (print_error(game, map, "Your fucking map is fucking wrong."));
 	// if (check_texture_files(map) < 0)
 	// 	return (print_error(game, map, "Bad texture file."));
-	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0)
-		return (print_error(game, map, "Map not closed."));
+	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0 
+		|| check_components(map) < 0)
+		return (print_error(game, map, "Map invalid."));
+	if (find_player(map) < 0)
+		return (print_error(game, map, "Too many player."));
+	printf("%c", map->p_orientation);
+	exit (0);
 	return (0);
 }

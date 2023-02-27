@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/21 14:53:59 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:47:02 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 typedef struct s_map{
 	char		**raw_map;
 	char		**map;
+
 	int			y_max;
 	int			flag;
+
 	int			*color_floor;
 	int			*color_ceil;
 	int			hex_color_floor;
@@ -37,6 +39,8 @@ typedef struct s_map{
 	char		*wall_so;
 	char		*wall_ea;
 	char		*wall_we;
+
+	char		p_orientation;
 }	t_map;
 
 typedef struct s_game{
@@ -59,14 +63,14 @@ int		copy_map(t_map *map);
 int		check_frst_lines(t_map *map);
 int		check_valid_map(t_map *map);
 int		parse_colors(t_map *map);
+int		find_player(t_map *map);
+int		check_components(t_map *map);
 
 //Errors and exit
 int		print_error(t_game *game, t_map *map, char *str);
 int		clear_structs(t_game *game, t_map *map, int exit_code);
 
 //utils
-// int		free_ptr(void **ptr);
-// void	*free_tab(char ***ptab);
-// void	*ft_realloc_tab(char **ptr, size_t size);
+int		in_char_set(char c, char *char_set);
 
 #endif
