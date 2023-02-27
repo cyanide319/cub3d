@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:34:20 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:29:50 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,13 @@ int		open_map(t_map *map, char *argv);
 //Errors and exit
 int		print_error(t_map *map, char *str);
 int		clear_structs(t_map *map, int exit_code);
+
+// raycasting
+void	raycasting(t_data *data);
+
+//mouvements
+int	player_move(int keycode, t_data *data);
+void	print_window(t_data *data);
 
 //utils
 int		in_char_set(char c, char *char_set);

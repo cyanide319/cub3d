@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
+#    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
 #    Updated: 2023/02/27 18:35:44 by tbeaudoi         ###   ########.fr        #
@@ -18,9 +18,6 @@ RM = rm -f
 
 LIBFT = include/libft/libft.a
 LIBFT_PATH = include/libft/
-
-LIBMLX = MLX42/
-MLX42 = MLX42/build/libmlx42.a
 
 SRCS = src/cub3d.c \
 		src/error.c \
@@ -38,14 +35,9 @@ OBJS = $(SRCS:.c=.o)
 
 all: 	$(NAME)
 
-$(MLX42):
-	@brew install glfw
-	@brew update
-
-$(NAME): $(OBJS) $(MLX42)
+$(NAME): $(OBJS) 
 	$(MAKE) -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $@ $^ $(LIBFT) 
-
 
 clean:
 	@$(RM) $(OBJS)
