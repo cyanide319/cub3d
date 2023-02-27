@@ -67,10 +67,8 @@ void	free_struct (t_data *data)
 
 int	main(int argc, char **argv)
 {
-	
 	t_map			*map;
 	t_data 			data;
-
 
 	map = ft_calloc(sizeof(t_map), 1);
 	if (argc == 2)
@@ -90,6 +88,5 @@ int	main(int argc, char **argv)
 	print_window(&data);
 	mlx_hook(data.window, 2, 0, player_move, &data);
 	mlx_loop(data.mlx);
-
 }
  
