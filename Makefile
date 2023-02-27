@@ -6,7 +6,7 @@
 #    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/21 14:40:03 by tbeaudoi         ###   ########.fr        #
+#    Updated: 2023/02/27 18:35:44 by tbeaudoi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,10 @@ SRCS = src/cub3d.c \
 		src/parsing_tertie.c \
 		src/parsing_quarte.c \
 		src/utils_prime.c \
+		src/raycasting.c \
+		src/print.c \
+		src/texture.c \
+		src/move.c \
 			 
 OBJS = $(SRCS:.c=.o)
 
@@ -40,15 +44,12 @@ $(MLX42):
 
 $(NAME): $(OBJS) $(MLX42)
 	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(MLX42) -I include -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
+	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $@ $^ $(LIBFT) 
 
-build:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 clean:
 	@$(RM) $(OBJS)
 	@make -C $(LIBFT_PATH)  clean
-	# @rm -f $(LIBMLX)/build
 
 fclean:	clean
 	@$(RM) $(NAME) $(LIBFT) 
