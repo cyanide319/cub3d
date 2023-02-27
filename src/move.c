@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:35:27 by slord             #+#    #+#             */
-/*   Updated: 2023/02/24 21:58:49 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 17:45:34 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ void check_move(int keycode, t_data *data)
 		move_right(data);
 	else if (keycode == LEFT)
 		move_left(data);
-	if (!data->map[(int)floor(data->player_y)][(int)floor(data->player_x)])
+	if (!data->map->map[(int)floor(data->player_y)][(int)floor(data->player_x)])
 	{
 		data->player_x = x;
 		data->player_y = y;
 	}
 
-	if (data->map[(int)floor(data->player_y)][(int)floor(data->player_x)] == '1')
+	if (data->map->map[(int)floor(data->player_y)][(int)floor(data->player_x)] == '1')
 	{
 			data->player_x = x;
 			data->player_y = y;

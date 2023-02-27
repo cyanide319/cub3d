@@ -6,12 +6,12 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/02/27 16:49:30 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:32:17 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-/*
+
 void	img_init(t_data *data)
 {
 	
@@ -35,6 +35,22 @@ int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical)
 }
 
 int pixel incrementation(int wall_h, int texture_h)
-texture_h  \ wall_h = lincremation de pixel dans la texture.
+{
+
 	si lincrematation est plus petit que 1, on floor. donc on va utiliser le meme pixel plusieurs fois
-	*/
+
+int	 calculate_incre(t_ray *ray)
+{
+	ray->pixel.incre = text_n /data->ray->wall_h;
+}
+ void	draw_text(t_ray *ray, t_data *data, int texture)
+ {
+	int	incre;
+	int	col;
+
+	incre = calculate_incre(ray);
+	col = calculate_texture_pixel(data, ray);
+	while 
+	
+ }
+	

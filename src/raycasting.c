@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/02/24 21:55:49 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:17:03 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ void	draw_ray(t_ray *ray, t_data *data)
 	if (ray->wall_h > WIN_HEIGHT)
 		ray->wall_h = WIN_HEIGHT;
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
+	//fonction pour calculer lincrementation de la texure
 	while (ray->wall_h > 0)
 	{
 		if (texture == 0)
 		//ouest
 			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y] = 100;
 		if (texture == 1)
-		//sud
+		//sud draw_text(ray, data, texture);
 			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + 1] = 100;
 		if (texture == 2)
 		//est
@@ -103,7 +104,7 @@ void	raycasting(t_data *data)
 		ray.y = data->player_y;
 		ray.cos = cos(ray.angle * (PI / 180)) / (double) 500;
 		ray.sin = sin(ray.angle * (PI / 180)) / (double) 500;
-		while (data->map[(int)floor(ray.y)][(int) floor(ray.x)] && data->map[(int)floor(ray.y)][(int) floor(ray.x)] == '0')
+		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] && data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] == '0')
 		{
 			ray.x += ray.cos;
 			ray.y += ray.sin;

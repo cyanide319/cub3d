@@ -6,7 +6,7 @@
 #    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/27 16:48:41 by slord            ###   ########.fr        #
+#    Updated: 2023/02/27 18:34:51 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: 	$(NAME)
 
-$(NAME): $(OBJS) $(MLX42)
+$(NAME): $(OBJS) 
 	$(MAKE) -C $(LIBFT_PATH)
 	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $@ $^ $(LIBFT) 
 

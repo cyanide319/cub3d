@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 16:44:25 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:36:41 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	screen(char *img_data, int line_size)
 	}
 }
 void init_data(t_data *data)
-{
+{ /*
 	char *test1 = "11111111111111";
 	char *test2 = "11000010000011111111111111111111111111111111111111111111111111111111111111111";
 	char *test3 = "1100000000000000000000000000000000000000000000000000000000000000111";
@@ -52,11 +52,11 @@ void init_data(t_data *data)
 			data->map[4]= ft_strdup(test5);
 	
 
-	
+	*/
 	data->dir_x =180;
 	//data->dir_y = -1;
-	data->player_x = 5.0;
-	data->player_y = 2.0;
+	data->player_x = 18.0;
+	data->player_y = 3.0;
 	
 }
 void	free_struct (t_data *data)
@@ -68,10 +68,20 @@ void	free_struct (t_data *data)
 int	main(int argc, char **argv)
 {
 	
-	(void)argc;
-	(void)argv;
-	t_data data;
+	t_map			*map;
+	t_data 			data;
 
+
+	map = ft_calloc(sizeof(t_map), 1);
+	if (argc == 2)
+	{
+		if (parsing(map, argv[1]) < 0)
+			return (-1);
+	}
+	else
+		return (print_error(map, "Argument: maps/map"));
+
+	data.map = map;
 	init_data(&data);
 	data.mlx = mlx_init();
 	//init_textures(data);

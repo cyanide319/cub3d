@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 16:47:40 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:29:50 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,23 @@
 # define CHR_SET "01NSEW"
 
 typedef struct s_map{
-	char		**raw_map;
-	char		**map;
-	int			y_max;
-	int			flag;
-	int			*color_floor;
-	int			*color_ceil;
-	int			hex_color_floor;
-	int			hex_color_ceil;
-	char		*wall_no;
-	char		*wall_so;
-	char		*wall_ea;
-	char		*wall_we;
-}	t_map;
-
-typedef struct s_game{
-	t_map	*map;
-	int		fd;
-	void	*img;
-	void	*mlx_win;
-	void	*mlx;
-	void	*xpm;
-}	t_game;
+    char        **raw_map;
+    char        **map;
+    int         y_max;
+    int         flag;
+    int         player_y;
+    int         player_x;
+    int         fd;
+    int         *color_floor;
+    int         *color_ceil;
+    int         hex_color_floor;
+    int         hex_color_ceil;
+    char        *wall_no;
+    char        *wall_so;
+    char        *wall_ea;
+    char        *wall_we;
+    char        p_orientation;
+}   t_map;
 
 typedef struct s_img{
 	void	*pointer;
@@ -76,13 +71,14 @@ typedef struct s_ray{
 	double	angle;
 	double	distance;
 	int		wall_h;
+	int		pixel_incre;
 }	t_ray;
 
 
 typedef struct s_data{
 	void *mlx;
 	void *window;
-	char **map;
+	t_map *map;
 	double player_x;
 	double player_y;
 	double dir_x;
