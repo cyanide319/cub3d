@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 13:13:29 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:50:38 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,26 @@ int	check_digit(char **str)
 
 char	*format_string(char *str)
 {
-	char	**split;
+	int		i;
+	int		j;
 	char	*ret;
 
-	split = ft_split(str, ' ');
-	if (split == NULL)
-		return (NULL);
-	ret = split[1];
-	free_tab(&split);
+	i = 0;
+	j = 0;
+	ret = ft_calloc(sizeof(char *), ft_strlen(str));
+	while (ft_iswhitespace(str[i]) == 1)
+		i++;
+	while (ft_iswhitespace(str[i]) != 1)
+		i++;
+	while (str[i] != '\0')
+	{
+		if (ft_iswhitespace(str[i]) != 1 && str[i] != '\n')
+		{
+			ret[j] = str[i];
+			j++;
+		}
+		i++;
+	}
 	return (ret);
 }
 
