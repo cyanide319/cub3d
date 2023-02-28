@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:29:50 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 18:50:21 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_ray{
 typedef struct s_data{
 	void		*mlx;
 	void		*window;
-	char		**map;
+	t_map		*map;
 	double		player_x;
 	double		player_y;
 	double		dir_x;

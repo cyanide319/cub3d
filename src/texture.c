@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/02/27 18:32:17 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/27 19:20:56 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,34 @@ int pixel incrementation(int wall_h, int texture_h)
 	si lincrematation est plus petit que 1, on floor. donc on va utiliser le meme pixel plusieurs fois
 
 int	 calculate_incre(t_ray *ray)
-{
+{ 
 	ray->pixel.incre = text_n /data->ray->wall_h;
 }
  void	draw_text(t_ray *ray, t_data *data, int texture)
  {
 	int	incre;
 	int	col;
-
+	int y;
+	int x;
+	int i;
+	
+	x = ray->position;
+	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
+	i =0;
 	incre = calculate_incre(ray);
 	col = calculate_texture_pixel(data, ray);
-	while 
 	
+	while (ray->wall_h > 0)
+	{
+		//POSITION DU PIXEL A CHANGER
+		while (i< 4)
+		{
+			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + i] = 100;
+		//POSITION DU PIXEL A IMPORTER
+			data->img.screen_data[col * 4 + 4 * WIN_WIDTH * incre + i] = 100;
+		}
+		ray->wall_h--;
+		y++;
+		incre+=incre;
+	}
  }
-	

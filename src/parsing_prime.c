@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_prime.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:21:24 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:51:31 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,5 @@ int	parsing(t_map *map, char *argv)
 	if (find_player(map) < 1)
 		return (print_error(map, "Too many or not enough player."));
 	printf("%c", map->p_orientation);
-	exit (0);
 	return (0);
 }

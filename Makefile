@@ -6,7 +6,7 @@
 #    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/27 18:35:44 by tbeaudoi         ###   ########.fr        #
+#    Updated: 2023/02/27 18:47:33 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ SRCS = src/cub3d.c \
 		src/utils_prime.c \
 		src/raycasting.c \
 		src/print.c \
-		src/texture.c \
 		src/move.c \
 			 
 OBJS = $(SRCS:.c=.o)
