@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:29:50 by slord            ###   ########.fr       */
+/*   Updated: 2023/02/28 13:14:11 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_ray{
 typedef struct s_data{
 	void		*mlx;
 	void		*window;
-	char		**map;
+	t_map		*map;
 	double		player_x;
 	double		player_y;
 	double		dir_x;
@@ -112,11 +112,13 @@ int		clear_structs(t_map *map, int exit_code);
 void	raycasting(t_data *data);
 
 //mouvements
-int	player_move(int keycode, t_data *data);
+int		player_move(int keycode, t_data *data);
 void	print_window(t_data *data);
 
 //utils
 int		in_char_set(char c, char *char_set);
+void	img_init(t_data *data);
+void 	init_data(t_data *data);
 
 // raycasting
 void	raycasting(t_data *data);

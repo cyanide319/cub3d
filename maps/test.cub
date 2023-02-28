@@ -1,13 +1,13 @@
-WE       assets/tile_wall_window_left.xpm
+WE       assets/wwall.xpm
 
-     NO assets/tile_wall_window_bottom.xpm
+     NO assets/nwall.xpm
 
 F 220,100,10
 
-SO assets/tile_wall_window_right.xpm
+SO assets/swall.xpm
 
 
-EA assets/tile_wall_window_top.xpm
+EA assets/ewall.xpm
 
 C     100,30,0
 
