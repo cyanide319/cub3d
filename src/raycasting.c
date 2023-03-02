@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/02/27 18:50:31 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/02 18:27:48 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,26 +54,36 @@ void	draw_ray(t_ray *ray, t_data *data)
 	i = 0;
 	x = ray->position;
 	texture = texture_selection(ray);
-	
 	if (ray->wall_h > WIN_HEIGHT)
 		ray->wall_h = WIN_HEIGHT;
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
-	//fonction pour calculer lincrementation de la texure
 	while (ray->wall_h > 0)
 	{
 		if (texture == 0)
+		{
 		//ouest
+			ray->texture = data->text_w;
 			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y] = 100;
-		if (texture == 1)
+		}
+		else if (texture == 1)
+		{
 		//sud draw_text(ray, data, texture);
+			ray->texture = data->text_s;
 			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + 1] = 100;
-		if (texture == 2)
+		}
+		else if (texture == 2)
+		{
 		//est
+			ray->texture = data->text_e;
 			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y+2] = 100;
-		if (texture == 3)
+		}
+		else if (texture == 3)
+		{
 		//nord
+			ray->texture = data->text_n;
 			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y+1] = 55;
-			
+		}
+		// draw_texture(ray);	
 		y++;
 		ray->wall_h--;
 	}
@@ -104,7 +114,8 @@ void	raycasting(t_data *data)
 		ray.y = data->player_y;
 		ray.cos = cos(ray.angle * (PI / 180)) / (double) 500;
 		ray.sin = sin(ray.angle * (PI / 180)) / (double) 500;
-		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] && data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] == '0')
+		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] 
+			&& data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] == '0')
 		{
 			ray.x += ray.cos;
 			ray.y += ray.sin;
