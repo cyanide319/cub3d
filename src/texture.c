@@ -6,13 +6,12 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/02 18:33:27 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/02 18:53:26 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-	
 //fonction qui determine quel colonne de la texture on affiche.
 int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical) 
 {
@@ -29,12 +28,11 @@ int  calculate_incre(int wall_h, int texture_h)
 	int texture_increment;
 	
 	// si lincrematation est plus petit que 1, on floor. donc on va utiliser le meme pixel plusieurs fois
-	
 	texture_increment = texture_h / wall_h;
 	return (texture_increment);
 }
 
-void	draw_text(t_ray *ray, t_data *data, int texture)
+void	draw_texture(t_data *data, t_ray *ray)
  {
 	int	incre;
 	int	col;

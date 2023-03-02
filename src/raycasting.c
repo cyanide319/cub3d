@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/02 18:27:48 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/02 18:51:08 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,36 +57,15 @@ void	draw_ray(t_ray *ray, t_data *data)
 	if (ray->wall_h > WIN_HEIGHT)
 		ray->wall_h = WIN_HEIGHT;
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
-	while (ray->wall_h > 0)
-	{
-		if (texture == 0)
-		{
-		//ouest
-			ray->texture = data->text_w;
-			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y] = 100;
-		}
-		else if (texture == 1)
-		{
-		//sud draw_text(ray, data, texture);
-			ray->texture = data->text_s;
-			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + 1] = 100;
-		}
-		else if (texture == 2)
-		{
-		//est
-			ray->texture = data->text_e;
-			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y+2] = 100;
-		}
-		else if (texture == 3)
-		{
-		//nord
-			ray->texture = data->text_n;
-			data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y+1] = 55;
-		}
-		// draw_texture(ray);	
-		y++;
-		ray->wall_h--;
-	}
+	if (texture == 0)
+		ray->texture = data->text_w;
+	else if (texture == 1)
+		ray->texture = data->text_s;
+	else if (texture == 2)
+	ray->texture = data->text_e;
+	else if (texture == 3)
+		ray->texture = data->text_n;
+	draw_texture(data, ray);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.pointer, 0, 0);
 }
 
