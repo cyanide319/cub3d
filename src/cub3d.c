@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/28 13:14:03 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:41:09 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void init_data(t_data *data)
 	//data->dir_y = -1;
 	data->player_x = 18.0;
 	data->player_y = 3.0;
-	img_init(data);
+	// img_init(data);
 }
 void	free_struct (t_data *data)
 {
