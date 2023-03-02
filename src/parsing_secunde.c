@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/28 12:50:38 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:40:51 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,24 +101,24 @@ char	*format_string(char *str)
 int	*split_rgb(char *str)
 {
 	int		*array;
-	char	**split;
+	char	*split;
 	char	**nb;
 
 	array = malloc(sizeof(int) * 3);
 	if (array == NULL)
 		return (NULL);
-	split = ft_split(str, ' ');
-	nb = ft_split(split[1], ',');
+	split = format_string(str);
+	nb = ft_split(split, ',');
 	if (check_digit(nb) != 0 || nb[3])
 	{
-		free_tab(&split);
+		free(split);
 		free_tab(&nb);
 		return (NULL);
 	}
 	array[0] = ft_atoi(nb[0]);
 	array[1] = ft_atoi(nb[1]);
 	array[2] = ft_atoi(nb[2]);
-	free_tab(&split);
+	free(split);
 	free_tab(&nb);
 	return (array);
 }
