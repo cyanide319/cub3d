@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
 /*   Updated: 2023/03/02 18:53:26 by slord            ###   ########.fr       */
@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	img_init(t_data *data)
+{
+	data->text_n.pointer = mlx_xpm_file_to_image(data->text_n.pointer,
+			data->map->wall_no, &data->text_n.width, &data->text_n.height);
+	data->text_s.pointer = mlx_xpm_file_to_image(data->text_s.pointer,
+			data->map->wall_so, &data->text_s.width, &data->text_s.height);
+	data->text_w.pointer = mlx_xpm_file_to_image(data->text_w.pointer,
+			data->map->wall_we, &data->text_w.width, &data->text_w.height);
+	data->text_e.pointer = mlx_xpm_file_to_image(data->text_e.pointer,
+			data->map->wall_ea, &data->text_e.width, &data->text_e.height);
+}
 
 //fonction qui determine quel colonne de la texture on affiche.
 int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical) 

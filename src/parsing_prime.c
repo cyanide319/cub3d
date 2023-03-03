@@ -106,13 +106,12 @@ int	parsing(t_map *map, char *argv)
 		return (print_error(map, "Bad file."));
 	if (get_map_data(map) < 0 || parse_colors(map) < 0 || copy_map(map) < 0)
 		return (print_error(map, "Your fucking map is fucking wrong."));
-	// if (check_texture_files(map) < 0)
-	// 	return (print_error(game, map, "Bad texture file."));
+	if (check_texture_files(map) < 0)
+		return (print_error(map, "Bad texture file."));
 	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0
 		|| check_components(map) < 0)
 		return (print_error(map, "Map invalid."));
 	if (find_player(map) < 1)
 		return (print_error(map, "Too many or not enough player."));
-	printf("%c", map->p_orientation);
 	return (0);
 }

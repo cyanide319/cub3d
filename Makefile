@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
+#    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
 #    Updated: 2023/02/27 18:47:33 by slord            ###   ########.fr        #

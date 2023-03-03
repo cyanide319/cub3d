@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 13:13:29 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:40:51 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,50 @@ int	check_digit(char **str)
 
 char	*format_string(char *str)
 {
-	char	**split;
+	int		i;
+	int		j;
 	char	*ret;
 
-	split = ft_split(str, ' ');
-	if (split == NULL)
-		return (NULL);
-	ret = split[1];
-	free_tab(&split);
+	i = 0;
+	j = 0;
+	ret = ft_calloc(sizeof(char *), ft_strlen(str));
+	while (ft_iswhitespace(str[i]) == 1)
+		i++;
+	while (ft_iswhitespace(str[i]) != 1)
+		i++;
+	while (str[i] != '\0')
+	{
+		if (ft_iswhitespace(str[i]) != 1 && str[i] != '\n')
+		{
+			ret[j] = str[i];
+			j++;
+		}
+		i++;
+	}
 	return (ret);
 }
 
 int	*split_rgb(char *str)
 {
 	int		*array;
-	char	**split;
+	char	*split;
 	char	**nb;
 
 	array = malloc(sizeof(int) * 3);
 	if (array == NULL)
 		return (NULL);
-	split = ft_split(str, ' ');
-	nb = ft_split(split[1], ',');
+	split = format_string(str);
+	nb = ft_split(split, ',');
 	if (check_digit(nb) != 0 || nb[3])
 	{
-		free_tab(&split);
+		free(split);
 		free_tab(&nb);
 		return (NULL);
 	}
 	array[0] = ft_atoi(nb[0]);
 	array[1] = ft_atoi(nb[1]);
 	array[2] = ft_atoi(nb[2]);
-	free_tab(&split);
+	free(split);
 	free_tab(&nb);
 	return (array);
 }

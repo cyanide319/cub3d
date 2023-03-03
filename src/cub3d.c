@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
 /*   Updated: 2023/02/27 18:50:42 by slord            ###   ########.fr       */
@@ -33,6 +33,7 @@ void	screen(char *img_data, int line_size)
 		y++;	
 	}
 }
+
 void init_data(t_data *data)
 { /*
 	char *test1 = "11111111111111";
@@ -57,7 +58,7 @@ void init_data(t_data *data)
 	//data->dir_y = -1;
 	data->player_x = 18.0;
 	data->player_y = 3.0;
-	
+	// img_init(data);
 }
 void	free_struct (t_data *data)
 {
