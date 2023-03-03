@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/28 13:14:11 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:18:57 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_ray{
 	double		angle;
 	double		distance;
 	int			wall_h;
+	t_img		texture;
 }	t_ray;
 
 typedef struct s_data{
