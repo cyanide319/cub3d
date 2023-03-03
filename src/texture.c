@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/02 21:57:46 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:15:21 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,39 +43,41 @@ int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical)
 		return ((ray->y - (int)floor(ray->y)) * data->text_n.width);
 }
 
-int  calculate_incre(int wall_h, int texture_h)
+double  calculate_incre(int wall_h, int texture_h)
 {
-	int texture_increment;
+	double texture_increment;
 	
 	// si lincrematation est plus petit que 1, on floor. donc on va utiliser le meme pixel plusieurs fois
-	texture_increment = texture_h / wall_h;
+	texture_increment = (double)texture_h / (double)wall_h;
 	return (texture_increment);
 }
 
-void	draw_texture(t_data *data, t_ray *ray)
+void	draw_texture(t_data *data, t_ray *ray, int texture)
  {
-	int	incre;
+	double	incre;
 	int	col;
 	int	y;
 	int	x;
 	int	i;
-	int j;
+	double j;
+	incre = calculate_incre(ray->wall_h, ray->texture.height);	
+	col = floor((int)((int) ray->texture.width * 
+	(ray->x + ray->y)) % ray->texture.width);
+	
+	if (texture == 2 || texture == 1)
+		col = ray->texture.width - col;
 	
 	j = 0;
 	x = ray->position;
 		if (ray->wall_h > WIN_HEIGHT)
-		ray->wall_h = WIN_HEIGHT;
+			ray->wall_h = WIN_HEIGHT;
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
-	incre = calculate_incre(ray->wall_h, ray->texture.height);
-	col = calculate_texture_pixel(data, ray, 1);
 		while (ray->wall_h > 0)
 		{
-			if (j > ray->texture.height)
-				break;
 			i = 0;
 			while (i < 4)
 			{
-				data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + i] = ray->texture.screen_data[j * 4 *ray->texture.width + (col * 4)  + i];
+				data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + i] = ray->texture.screen_data[(int)floor(j) * 4 *ray->texture.width + (col * 4)  + i];
 				i++;
 			}
 			ray->wall_h--;

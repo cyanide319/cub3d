@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:35:27 by slord             #+#    #+#             */
-/*   Updated: 2023/02/27 17:45:34 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/03 16:31:08 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,27 @@ void move_foward(t_data *data)
 	double temp_y;
 	double temp_x;
 
-	temp_y = 0.5 * sin(data->dir_x* (PI / 180));
-	temp_x = 0.5 * sin(90 -(data->dir_x* (PI / 180)));
+	temp_y = MOVE_LENGTH  * sin(data->dir_x* (PI / 180));
+	temp_x = MOVE_LENGTH  * cos((data->dir_x* (PI / 180)));
 	//data->player_x += cos(data->dir_x * (PI / 180))
 	//	/ 10;
 	//data->player_y += sin(data->dir_x * (PI / 180))
 	//	/ 10;
 	data->player_y += temp_y;
 	data->player_x += temp_x;
-	
 }
 void move_backward(t_data *data)
 {
 	double temp_y;
 	double temp_x;
-
-	temp_y = 0.5 * sin(data->dir_x* (PI / 180));
-	temp_x = 0.5 * sin(90-(data->dir_x* (PI / 180)));
+	temp_y = MOVE_LENGTH * sin(data->dir_x* (PI / 180));
+	temp_x = MOVE_LENGTH * cos((data->dir_x* (PI / 180)));
 	//data->player_x += cos(data->dir_x * (PI / 180))
 	//	/ 10;
 	//data->player_y += sin(data->dir_x * (PI / 180))
 	//	/ 10;
 	data->player_y -= temp_y;
 	data->player_x -= temp_x;
-	
 }
 
 void move_right(t_data *data)
@@ -52,8 +49,8 @@ void move_right(t_data *data)
 	double temp_y;
 	double temp_x;
 	
-	temp_x = 0.5 * cos((data->dir_x - 90)* (PI / 180));
-	temp_y = 0.5 * sin((data->dir_x - 90) *(PI / 180));
+	temp_x = MOVE_LENGTH  * cos((data->dir_x - 90)* (PI / 180));
+	temp_y = MOVE_LENGTH  * sin((data->dir_x - 90) *(PI / 180));
 	//data->player_x += cos(data->dir_x * (PI / 180))
 	//	/ 10;
 	//data->player_y += sin(data->dir_x * (PI / 180))
@@ -68,8 +65,8 @@ void move_left(t_data *data)
 	double temp_y;
 	double temp_x;
 
-	temp_x = 0.5 * cos((data->dir_x + 90)* (PI / 180));
-	temp_y = 0.5 * sin((data->dir_x + 90) *(PI / 180));
+	temp_x = MOVE_LENGTH  * cos((data->dir_x + 90)* (PI / 180));
+	temp_y = MOVE_LENGTH  * sin((data->dir_x + 90) *(PI / 180));
 	//data->player_x += cos(data->dir_x * (PI / 180))
 	//	/ 10;
 	//data->player_y += sin(data->dir_x * (PI / 180))

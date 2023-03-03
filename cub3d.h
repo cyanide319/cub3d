@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/02 19:08:38 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:18:44 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
 # include<fcntl.h>
 # include<math.h>
 # include<mlx.h>
-# define WIN_WIDTH	500
-# define WIN_HEIGHT	500
+# define WIN_WIDTH	1000
+# define WIN_HEIGHT	1000
 # define PI	3.14159265
-# define VISION 75
+# define VISION 80
 # define FOWARD		13
 # define BACKWARD	1
 # define LEFT	0
 # define RIGHT	2
+# define MOVE_LENGTH	0.3
 
 # define CHR_SET "01NSEW"
 
@@ -120,7 +121,7 @@ void 	init_data(t_data *data);
 
 // raycasting
 void	raycasting(t_data *data);
-void	draw_texture(t_data *data, t_ray *ray);
+void	draw_texture(t_data *data, t_ray *ray, int texture);
 
 //mouvements
 int		player_move(int keycode, t_data *data);

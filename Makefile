@@ -6,14 +6,14 @@
 #    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/03/02 21:17:03 by slord            ###   ########.fr        #
+#    Updated: 2023/03/03 16:18:32 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -f
 
 LIBFT = include/libft/libft.a
