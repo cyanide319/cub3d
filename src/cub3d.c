@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:50:42 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/02 19:34:08 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	data.map = map;
 	init_data(&data);
 	data.mlx = mlx_init();
-	//init_textures(data);
+	img_init(&data);
 	data.window = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	//screen(data.screen_data, size_line);
 	print_window(&data);

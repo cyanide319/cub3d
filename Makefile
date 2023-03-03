@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
+#    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/27 18:47:33 by slord            ###   ########.fr        #
+#    Updated: 2023/03/02 21:17:03 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -f
 
 LIBFT = include/libft/libft.a
@@ -29,6 +29,7 @@ SRCS = src/cub3d.c \
 		src/raycasting.c \
 		src/print.c \
 		src/move.c \
+		src/texture.c \
 			 
 OBJS = $(SRCS:.c=.o)
 

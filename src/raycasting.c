@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/02 18:51:08 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/02 21:14:52 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,9 @@ void	clear_img_array(t_data *data)
 
 void	draw_ray(t_ray *ray, t_data *data)
 {
-	int	i;
-	int	x;
-	int	y;
-	int texture;
+	int	texture;
 
-	i = 0;
-	x = ray->position;
 	texture = texture_selection(ray);
-	if (ray->wall_h > WIN_HEIGHT)
-		ray->wall_h = WIN_HEIGHT;
-	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
 	if (texture == 0)
 		ray->texture = data->text_w;
 	else if (texture == 1)
@@ -66,7 +58,6 @@ void	draw_ray(t_ray *ray, t_data *data)
 	else if (texture == 3)
 		ray->texture = data->text_n;
 	draw_texture(data, ray);
-	mlx_put_image_to_window(data->mlx, data->window, data->img.pointer, 0, 0);
 }
 
 void	ray_size(t_ray *ray, t_data *data)
@@ -103,4 +94,5 @@ void	raycasting(t_data *data)
 		ray.angle += (double) VISION / WIN_WIDTH;
 		i++;
 	}
+	mlx_put_image_to_window(data->mlx, data->window, data->img.pointer, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/02 18:18:57 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/02 19:08:38 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,6 @@ int		open_map(t_map *map, char *argv);
 int		print_error(t_map *map, char *str);
 int		clear_structs(t_map *map, int exit_code);
 
-// raycasting
-void	raycasting(t_data *data);
-
 //mouvements
 int		player_move(int keycode, t_data *data);
 void	print_window(t_data *data);
@@ -123,6 +120,7 @@ void 	init_data(t_data *data);
 
 // raycasting
 void	raycasting(t_data *data);
+void	draw_texture(t_data *data, t_ray *ray);
 
 //mouvements
 int		player_move(int keycode, t_data *data);
