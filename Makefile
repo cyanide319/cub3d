@@ -6,7 +6,7 @@
 #    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/03/03 16:18:32 by slord            ###   ########.fr        #
+#    Updated: 2023/03/06 13:26:42 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = src/cub3d.c \
 		src/print.c \
 		src/move.c \
 		src/texture.c \
+		src/move_1.c \
 			 
 OBJS = $(SRCS:.c=.o)
 

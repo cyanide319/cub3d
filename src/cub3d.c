@@ -6,41 +6,37 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/03 14:09:37 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 14:42:57 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../cub3d.h"
 
-void	screen(char *img_data, int line_size)
+int	game_over(t_data *data, int exit_code)
 {
-	int		y;
-	int		x;
+	int	i;
+	int	j;
 
-	y = 0;
-	x = 0;
-	while (y < WIN_HEIGHT)
+	i = 0;
+	j = 0;
+	if (exit_code != 0)
 	{
-		while (x < WIN_WIDTH)
-		{
-			if (y <  WIN_HEIGHT / 2)
-				img_data[x * 4 + 4 * (line_size / 4) * y] = 0x000080;
-			else
-				img_data[x * 4 + 4 * (line_size / 4) * y + 1] = 100;
-			x++;
-		}
-		x = 0;
-		y++;	
+		mlx_destroy_image(data->mlx, data->text_e.pointer);
+		mlx_destroy_image(data->mlx, data->text_w.pointer);
+		mlx_destroy_image(data->mlx, data->text_n.pointer);
+		mlx_destroy_image(data->mlx, data->text_s.pointer);		
 	}
+	exit(exit_code);
 }
 
-void init_data(t_data *data)
+void init_data(t_data *data, t_map *map)
 { 
-	data->dir_x =180;
-	//data->dir_y = -1;
-	data->player_x = 18.0;
-	data->player_y = 3.0;
-	// img_init(data);
+	data->dir_x = map->p_orientation;
+	
+	data->player_x = (double)map->player_x;
+	data->player_y = (double)map->player_y;
+	//printf("playerx = %d \n playery = %d \n player_orienta = %d", map->player_x, map->player_x, map->p_orientation);
+	data->dir_x = 50;
 }
 void	free_struct (t_data *data)
 {
@@ -63,13 +59,13 @@ int	main(int argc, char **argv)
 		return (print_error(map, "Argument: maps/map"));
 
 	data.map = map;
-	init_data(&data);
+	init_data(&data, map);
 	data.mlx = mlx_init();
 	img_init(&data);
 	data.window = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
-	//screen(data.screen_data, size_line);
-	//print_window(&data);
+	print_window(&data);
 	mlx_hook(data.window, 2, 0, player_move, &data);
+	mlx_hook(data.window, 17, 0, game_over, &data);
 	mlx_loop(data.mlx);
 }
  

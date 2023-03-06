@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/03 17:14:43 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 13:35:46 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ int	texture_selection(t_ray *ray)
 	int			x;
 	int			y;
 	static int	texture = 0;
-	//static pour eviter le changement de couleur au bout des murs.
 
 	x = (int) floor(ray->x - ray->cos);
 	y = (int) floor(ray->y - ray->sin);
-
 	if (x < floor(ray->x) && y == floor(ray->y))
 		texture = 3;
 	else if (x > floor(ray->x) && y == floor(ray->y))
@@ -32,6 +30,7 @@ int	texture_selection(t_ray *ray)
 		texture = 0;
 	return (texture);
 }
+
 void	clear_img_array(t_data *data)
 {
 	int	i;
@@ -62,10 +61,10 @@ void	draw_ray(t_ray *ray, t_data *data)
 
 void	ray_size(t_ray *ray, t_data *data)
 {
-	ray->distance = sqrt(pow(data->player_x - ray->x, 2) +
-	pow(data->player_y - ray->y, 2));
-	ray->distance = ray->distance * cos(ray->angle * (PI / 180) -
-	data->dir_x * (PI / 180));
+	ray->distance = sqrt(pow(data->player_x - ray->x, 2)
+			+ pow(data->player_y - ray->y, 2));
+	ray->distance = ray->distance * cos(ray->angle * (PI / 180)
+			-data->dir_x * (PI / 180));
 	ray->wall_h = floor((WIN_HEIGHT / 2) / ray->distance);
 	draw_ray(ray, data);
 }

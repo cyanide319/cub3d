@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/03 17:15:21 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 13:19:18 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	img_init(t_data *data)
 			&data->text_w.bpp, &data->text_w.size_line, &data->text_w.endian);
 }
 
-//fonction qui determine quel colonne de la texture on affiche.
 int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical) 
 {
 	if (vertical)
@@ -63,11 +62,11 @@ void	draw_texture(t_data *data, t_ray *ray, int texture)
 	incre = calculate_incre(ray->wall_h, ray->texture.height);	
 	col = floor((int)((int) ray->texture.width * 
 	(ray->x + ray->y)) % ray->texture.width);
-	
 	if (texture == 2 || texture == 1)
 		col = ray->texture.width - col;
-	
 	j = 0;
+	if (ray->wall_h > WIN_HEIGHT)
+		j += incre * (ray->wall_h / 2 - (WIN_HEIGHT / 2));
 	x = ray->position;
 		if (ray->wall_h > WIN_HEIGHT)
 			ray->wall_h = WIN_HEIGHT;
@@ -77,7 +76,8 @@ void	draw_texture(t_data *data, t_ray *ray, int texture)
 			i = 0;
 			while (i < 4)
 			{
-				data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + i] = ray->texture.screen_data[(int)floor(j) * 4 *ray->texture.width + (col * 4)  + i];
+				data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + i] = 
+					ray->texture.screen_data[(int)floor(j) * 4 *ray->texture.width + (col * 4)  + i];
 				i++;
 			}
 			ray->wall_h--;

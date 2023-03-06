@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/03 17:18:44 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 14:32:02 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int		open_map(t_map *map, char *argv);
 //Errors and exit
 int		print_error(t_map *map, char *str);
 int		clear_structs(t_map *map, int exit_code);
+int		game_over(t_data *data, int exit_code);
 
 //mouvements
 int		player_move(int keycode, t_data *data);
@@ -117,7 +118,7 @@ void	print_window(t_data *data);
 //utils
 int		in_char_set(char c, char *char_set);
 void	img_init(t_data *data);
-void 	init_data(t_data *data);
+void 	init_data(t_data *data, t_map *map);
 
 // raycasting
 void	raycasting(t_data *data);
@@ -126,5 +127,6 @@ void	draw_texture(t_data *data, t_ray *ray, int texture);
 //mouvements
 int		player_move(int keycode, t_data *data);
 void	print_window(t_data *data);
+void	check_move(int keycode, t_data *data);
 
 #endif
