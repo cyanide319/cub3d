@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 13:19:18 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 18:16:44 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	img_init(t_data *data)
 			&data->text_w.bpp, &data->text_w.size_line, &data->text_w.endian);
 }
 
-int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical) 
+int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical)
 {
 	if (vertical)
 	{
@@ -42,46 +42,44 @@ int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical)
 		return ((ray->y - (int)floor(ray->y)) * data->text_n.width);
 }
 
-double  calculate_incre(int wall_h, int texture_h)
+double	calculate_incre(int wall_h, int texture_h)
 {
-	double texture_increment;
-	
-	// si lincrematation est plus petit que 1, on floor. donc on va utiliser le meme pixel plusieurs fois
+	double	texture_increment;
+
 	texture_increment = (double)texture_h / (double)wall_h;
 	return (texture_increment);
 }
 
 void	draw_texture(t_data *data, t_ray *ray, int texture)
- {
+{
 	double	incre;
-	int	col;
-	int	y;
-	int	x;
-	int	i;
-	double j;
-	incre = calculate_incre(ray->wall_h, ray->texture.height);	
-	col = floor((int)((int) ray->texture.width * 
-	(ray->x + ray->y)) % ray->texture.width);
+	int		col;
+	int		y;
+	int		i;
+	double	j;
+
+	incre = calculate_incre(ray->wall_h, ray->texture.height);
+	col = floor((int)((int) ray->texture.width
+				* (ray->x + ray->y)) % ray->texture.width);
 	if (texture == 2 || texture == 1)
 		col = ray->texture.width - col;
 	j = 0;
 	if (ray->wall_h > WIN_HEIGHT)
 		j += incre * (ray->wall_h / 2 - (WIN_HEIGHT / 2));
-	x = ray->position;
-		if (ray->wall_h > WIN_HEIGHT)
+	if (ray->wall_h > WIN_HEIGHT)
 			ray->wall_h = WIN_HEIGHT;
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
-		while (ray->wall_h > 0)
+	while (ray->wall_h > 0)
+	{
+		i = 0;
+		while (i < 4)
 		{
-			i = 0;
-			while (i < 4)
-			{
-				data->img.screen_data[x * 4 + 4 * WIN_WIDTH * y + i] = 
-					ray->texture.screen_data[(int)floor(j) * 4 *ray->texture.width + (col * 4)  + i];
-				i++;
-			}
-			ray->wall_h--;
-			y++;
-			j = incre + j;
+			data->img.screen_data[ray->position * 4 + 4 * WIN_WIDTH * y + i]
+						= ray->texture.screen_data[(int)floor(j) * 4 * ray->texture.width + (col * 4) + i];
+			i++;
 		}
+		ray->wall_h--;
+		y++;
+		j = incre + j;
 	}
+}

@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:35:27 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 13:26:22 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:21:12 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	move_right(t_data *data)
 	double	temp_y;
 	double	temp_x;
 
-	temp_x = MOVE_LENGTH * cos((data->dir_x - 90)* (PI / 180));
-	temp_y = MOVE_LENGTH * sin((data->dir_x - 90) *(PI / 180));
+	temp_x = MOVE_LENGTH * cos((data->dir_x - 90) * (PI / 180));
+	temp_y = MOVE_LENGTH * sin((data->dir_x - 90) * (PI / 180));
 	data->player_y -= temp_y;
 	data->player_x -= temp_x;
 }

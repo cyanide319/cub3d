@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/06 14:42:57 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:18:13 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	game_over(t_data *data, int exit_code)
 
 void init_data(t_data *data, t_map *map)
 { 
-	data->dir_x = map->p_orientation;
 	
-	data->player_x = (double)map->player_x;
-	data->player_y = (double)map->player_y;
-	//printf("playerx = %d \n playery = %d \n player_orienta = %d", map->player_x, map->player_x, map->p_orientation);
-	data->dir_x = 50;
+	data->player_x = map->player_x;
+	data->player_y = map->player_y;
+	printf("playerx = %d \n playery = %d \n player_orienta = %d", map->player_x, map->player_y, map->p_orientation);
+	printf("playerdtatx = %f \n playdsadery = %f \n player_orienta = %d", data->player_x, data->player_y, map->p_orientation);
+	data->dir_x = 0;
 }
 void	free_struct (t_data *data)
 {
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	img_init(&data);
 	data.window = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
-	print_window(&data);
+	player_move(777, &data);
 	mlx_hook(data.window, 2, 0, player_move, &data);
 	mlx_hook(data.window, 17, 0, game_over, &data);
 	mlx_loop(data.mlx);

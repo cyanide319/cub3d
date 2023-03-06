@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/06 14:32:02 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:36:21 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # define WIN_WIDTH	1000
 # define WIN_HEIGHT	1000
 # define PI	3.14159265
-# define VISION 80
+# define VISION 75
 # define FOWARD		13
 # define BACKWARD	1
 # define LEFT	0
 # define RIGHT	2
-# define MOVE_LENGTH	0.3
+# define MOVE_LENGTH	0.4
 
 # define CHR_SET "01NSEW"
 
@@ -71,6 +71,7 @@ typedef struct s_ray{
 	double		angle;
 	double		distance;
 	int			wall_h;
+	int			text_c;
 	t_img		texture;
 }	t_ray;
 
@@ -118,7 +119,7 @@ void	print_window(t_data *data);
 //utils
 int		in_char_set(char c, char *char_set);
 void	img_init(t_data *data);
-void 	init_data(t_data *data, t_map *map);
+void	init_data(t_data *data, t_map *map);
 
 // raycasting
 void	raycasting(t_data *data);

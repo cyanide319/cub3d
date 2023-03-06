@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 13:35:46 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:22:25 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	raycasting(t_data *data)
 		ray.y = data->player_y;
 		ray.cos = cos(ray.angle * (PI / 180)) / (double) 500;
 		ray.sin = sin(ray.angle * (PI / 180)) / (double) 500;
-		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] 
+		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)]
 			&& data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] == '0')
 		{
 			ray.x += ray.cos;

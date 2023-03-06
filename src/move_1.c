@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:35:27 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 14:40:21 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 15:30:15 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	player_move(int keycode, t_data *data)
 {
 	if (keycode == 53)
 		game_over(data, 0);
-	check_move(keycode, data);
+	if (keycode != 777)
+		check_move(keycode, data);
 	if (keycode == 123)
 		data->dir_x -= 5;
 	else if (keycode == 124)
