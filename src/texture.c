@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 18:16:44 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 18:42:50 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,25 @@ double	calculate_incre(int wall_h, int texture_h)
 	return (texture_increment);
 }
 
+void	draw_line(t_data *data, t_ray *ray, double j, int y, int col)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		data->img.screen_data[ray->position * 4 + 4 * WIN_WIDTH * y + i]
+			= ray->texture.screen_data[(int)floor(j) * 4 * ray->texture.width
+			+ (col * 4) + i];
+		i++;
+	}
+}
+
 void	draw_texture(t_data *data, t_ray *ray, int texture)
 {
 	double	incre;
 	int		col;
 	int		y;
-	int		i;
 	double	j;
 
 	incre = calculate_incre(ray->wall_h, ray->texture.height);
@@ -71,13 +84,7 @@ void	draw_texture(t_data *data, t_ray *ray, int texture)
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
 	while (ray->wall_h > 0)
 	{
-		i = 0;
-		while (i < 4)
-		{
-			data->img.screen_data[ray->position * 4 + 4 * WIN_WIDTH * y + i]
-						= ray->texture.screen_data[(int)floor(j) * 4 * ray->texture.width + (col * 4) + i];
-			i++;
-		}
+		draw_line(data, ray, j, y, col);
 		ray->wall_h--;
 		y++;
 		j = incre + j;
