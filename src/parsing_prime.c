@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_prime.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 14:54:29 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:43:02 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	check_file_format(char *str)
 	}
 	return (0);
 }
-
 
 int	get_heigh(t_map *map)
 {
