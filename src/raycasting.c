@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/08 14:55:55 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:34:05 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	draw_ray(t_ray *ray, t_data *data)
 	int	texture;
 
 	texture = texture_selection(ray);
-	if (texture == 0)
+	if (texture == 2)
 		ray->texture = data->text_w;
 	else if (texture == 1)
 		ray->texture = data->text_s;
-	else if (texture == 2)
-	ray->texture = data->text_e;
 	else if (texture == 3)
+	ray->texture = data->text_e;
+	else if (texture == 0)
 		ray->texture = data->text_n;
 	draw_texture(data, ray, texture);
 }
