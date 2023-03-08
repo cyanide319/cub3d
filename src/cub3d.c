@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/06 19:17:38 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 13:16:20 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	game_over(t_data *data, int exit_code)
 		mlx_destroy_image(data->mlx, data->text_n.pointer);
 		mlx_destroy_image(data->mlx, data->text_s.pointer);		
 	}
+	clear_structs(data, 0);
 	exit(exit_code);
 }
 
@@ -44,22 +45,23 @@ void	free_struct (t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_map			*map;
+	// t_map			*map;
 	t_data 			data;
 
-	map = ft_calloc(sizeof(t_map), 1);
+	data.map = ft_calloc(sizeof(t_map), 1);
 	if (argc == 2)
 	{
-		if (parsing(map, argv[1]) < 0)
+		if (parsing(&data, argv[1]) < 0)
 			return (-1);
 	}
 	else
-		return (print_error(map, "Argument: maps/map"));
+		return (print_error(&data, "Argument: maps/map"));
 
-	data.map = map;
-	init_data(&data, map);
+	// data.map = data.map;
+	init_data(&data, data.map);
 	data.mlx = mlx_init();
-	img_init(&data);
+	if (img_init(&data) < 0)
+		return (print_error(&data, "Bad texture file"));
 	data.window = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	player_move(777, &data);
 	mlx_hook(data.window, 2, 0, player_move, &data);

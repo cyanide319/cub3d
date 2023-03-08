@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:25:25 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 18:38:01 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/07 16:28:43 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	draw_floor(t_data *data)
 	{
 		if (x < array_length / 2)
 		{
-			data->img.screen_data[x * 4] = data->map->color_ceil[0];
+			data->img.screen_data[x * 4] = data->map->color_ceil[2];
 			data->img.screen_data[x * 4 + 1] = data->map->color_ceil[1];
-			data->img.screen_data[x * 4 + 2] = data->map->color_ceil[2];
+			data->img.screen_data[x * 4 + 2] = data->map->color_ceil[0];
 		}
 		else
 		{
-			data->img.screen_data[x * 4] = data->map->color_floor[0];
+			data->img.screen_data[x * 4] = data->map->color_floor[2];
 			data->img.screen_data[x * 4 + 1] = data->map->color_floor[1];
-			data->img.screen_data[x * 4 + 2] = data->map->color_floor[2];
+			data->img.screen_data[x * 4 + 2] = data->map->color_floor[0];
 		}
 		x++;
 	}

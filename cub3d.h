@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/06 16:36:21 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 13:13:25 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_data{
 }	t_data;
 
 //Parsing
-int		parsing(t_map *map, char *argv);
+int		parsing(t_data *data, char *argv);
 char	*format_string(char *str);
 int		*split_rgb(char *str);
 int		parse_line(char *str);
@@ -108,8 +108,8 @@ int		get_map_data(t_map *map);
 int		open_map(t_map *map, char *argv);
 
 //Errors and exit
-int		print_error(t_map *map, char *str);
-int		clear_structs(t_map *map, int exit_code);
+int		print_error(t_data *data, char *str);
+int		clear_structs(t_data *data, int exit_code);
 int		game_over(t_data *data, int exit_code);
 
 //mouvements
@@ -118,7 +118,7 @@ void	print_window(t_data *data);
 
 //utils
 int		in_char_set(char c, char *char_set);
-void	img_init(t_data *data);
+int		img_init(t_data *data);
 void	init_data(t_data *data, t_map *map);
 
 // raycasting

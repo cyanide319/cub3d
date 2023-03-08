@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 18:42:50 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/07 17:56:26 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	img_init(t_data *data)
+int	img_init(t_data *data)
 {
 	data->text_n.pointer = mlx_xpm_file_to_image(data->mlx,
 			data->map->wall_no, &data->text_n.width, &data->text_n.height);
@@ -22,6 +22,9 @@ void	img_init(t_data *data)
 			data->map->wall_we, &data->text_w.width, &data->text_w.height);
 	data->text_e.pointer = mlx_xpm_file_to_image(data->mlx,
 			data->map->wall_ea, &data->text_e.width, &data->text_e.height);
+	if (data->text_n.pointer == NULL || data->text_s.pointer == NULL
+		|| data->text_w.pointer == NULL || data->text_e.pointer == NULL)
+		return (-1);
 	data->text_n.screen_data = mlx_get_data_addr(data->text_n.pointer,
 			&data->text_n.bpp, &data->text_n.size_line, &data->text_n.endian);
 	data->text_s.screen_data = mlx_get_data_addr(data->text_s.pointer,
@@ -30,6 +33,7 @@ void	img_init(t_data *data)
 			&data->text_e.bpp, &data->text_e.size_line, &data->text_e.endian);
 	data->text_w.screen_data = mlx_get_data_addr(data->text_w.pointer,
 			&data->text_w.bpp, &data->text_w.size_line, &data->text_w.endian);
+	return (0);
 }
 
 int	calculate_texture_pixel(t_data *data, t_ray *ray, int vertical)
