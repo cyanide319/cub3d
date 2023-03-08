@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:39:37 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 14:51:41 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:03:29 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,39 @@ int	check_components(t_map *map)
 			x++;
 		}
 		y++;
+	}
+	return (0);
+}
+
+int	check_img_file(char *str)
+{
+	int	fd;
+
+	fd = open(str, O_RDONLY);
+	if (fd <= 0)
+		return (-1);
+	close (fd);
+	return (0);
+}
+
+int	check_file_format(char *str)
+{
+	char	*comp;
+	int		i;
+	int		j;
+
+	comp = ".cub";
+	i = 0;
+	j = 3;
+	while (str[i] != '\0')
+		i++;
+	i--;
+	while (j >= 0)
+	{
+		if (str[i] != comp[j])
+			return (-1);
+		i--;
+		j--;
 	}
 	return (0);
 }

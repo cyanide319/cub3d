@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_prime.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 15:43:02 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 16:03:20 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../cub3d.h"
-
-int	check_file_format(char *str)
-{
-	char	*comp;
-	int		i;
-	int		j;
-
-	comp = ".cub";
-	i = 0;
-	j = 3;
-	while (str[i] != '\0')
-		i++;
-	i--;
-	while (j >= 0)
-	{
-		if (str[i] != comp[j])
-			return (-1);
-		i--;
-		j--;
-	}
-	return (0);
-}
 
 int	get_heigh(t_map *map)
 {

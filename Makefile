@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
+#    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/03/08 15:43:32 by slord            ###   ########.fr        #
+#    Updated: 2023/03/08 16:09:09 by tbeaudoi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g
@@ -19,7 +19,7 @@ RM = rm -f
 LIBFT = include/libft/libft.a
 LIBFT_PATH = include/libft/
 
-SRCS = src/cube.c \
+SRCS = src/cub3d.c \
 		src/error.c \
 		src/parsing_prime.c \
 		src/parsing_secunde.c \
