@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 13:13:25 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:53:37 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define BACKWARD	1
 # define LEFT	0
 # define RIGHT	2
-# define MOVE_LENGTH	0.4
+# define MOVE_LENGTH	0.15
 
 # define CHR_SET "01NSEW"
 
@@ -88,6 +88,8 @@ typedef struct s_data{
 	t_img		text_s;
 	t_img		text_e;
 	t_img		text_w;
+	int			fish_eye;
+	int			aqua;
 }	t_data;
 
 //Parsing
@@ -120,6 +122,8 @@ void	print_window(t_data *data);
 int		in_char_set(char c, char *char_set);
 int		img_init(t_data *data);
 void	init_data(t_data *data, t_map *map);
+int		aquarium(t_data *data);
+int		fish_eye(t_data *data);
 
 // raycasting
 void	raycasting(t_data *data);

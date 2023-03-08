@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:25:25 by slord             #+#    #+#             */
-/*   Updated: 2023/03/07 16:28:43 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:52:55 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../cub3d.h"
+
+int	aquarium(t_data *data)
+{
+	if (data->fish_eye == 0)
+		data->fish_eye = 1;
+	else
+		data->fish_eye = 0;
+	return (0);
+}
+
+int	fish_eye(t_data *data)
+{
+	if (data->aqua == 0)
+		data->aqua = 1;
+	else
+		data->aqua = 0;
+	print_window(data);
+	return (0);
+}
 
 void	draw_floor(t_data *data)
 {
