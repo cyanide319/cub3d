@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:28:33 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 13:31:20 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:10:31 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,20 @@ int	in_char_set(char c, char *char_set)
 		i++;
 	}
 	return (-1);
+}
+
+void	dont_look_here(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (map->raw_map[j] != NULL)
+	{
+		map->raw_map[i] = map->raw_map[j];
+		i++;
+		j++;
+	}
+	map->raw_map[j] = NULL;
 }

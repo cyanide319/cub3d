@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:26:37 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/17 19:38:33 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:14:11 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,23 @@ int	free_ptr(void **ptr)
 		*ptr = NULL;
 	}
 	return (0);
+}
+
+void	free_array(char	***tabp)
+{
+	int		i;
+	char	**tab;
+
+	i = 0;
+	tab = *tabp;
+	while (tab[i] != NULL)
+	{
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
+	}
+	free (tab);
+	*tabp = NULL;
 }
 
 void	*free_tab(char ***ptab)
