@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
 /*   Updated: 2023/03/08 15:16:36 by tbeaudoi         ###   ########.fr       */
@@ -30,6 +30,8 @@ int	game_over(t_data *data, int exit_code)
 		if(data->text_s.pointer != NULL)
 			mlx_destroy_image(data->mlx, data->text_s.pointer);		
 	}
+	if (data->window)
+		mlx_destroy_window(data->mlx, data->window);
 	clear_structs(data, 0);
 	exit(exit_code);
 }
@@ -39,7 +41,16 @@ void init_data(t_data *data, t_map *map)
 
 	data->player_x = map->player_x + MOVE_LENGTH + 0.1;
 	data->player_y = map->player_y + MOVE_LENGTH + 0.1;
-	data->dir_x = 0;
+	data->fish_eye = 0;
+	data->aqua = 0;
+	if (map->p_orientation == 'N')
+		data->dir_x = 270;
+	else if (map->p_orientation == 'E')
+		data->dir_x = 0;
+	else if (map->p_orientation == 'S')
+		data->dir_x = 90;
+	else
+		data->dir_x = 180;
 }
 void	free_struct (t_data *data)
 {
@@ -49,7 +60,6 @@ void	free_struct (t_data *data)
 
 int	main(int argc, char **argv)
 {
-	// t_map			*map;
 	t_data 			data;
 
 	data.map = ft_calloc(sizeof(t_map), 1);
@@ -61,7 +71,6 @@ int	main(int argc, char **argv)
 	else
 		return (print_error(&data, "Argument: maps/map"));
 
-	// data.map = data.map;
 	init_data(&data, data.map);
 	data.mlx = mlx_init();
 	if (img_init(&data) < 0)

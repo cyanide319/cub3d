@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:31:45 by slord             #+#    #+#             */
-/*   Updated: 2023/03/07 17:56:26 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:25:54 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	calculate_incre(int wall_h, int texture_h)
 	return (texture_increment);
 }
 
-void	draw_line(t_data *data, t_ray *ray, double j, int y, int col)
+void	draw_line(t_data *data, t_ray *ray, double j, int y)
 {
 	int	i;
 
@@ -63,7 +63,7 @@ void	draw_line(t_data *data, t_ray *ray, double j, int y, int col)
 	{
 		data->img.screen_data[ray->position * 4 + 4 * WIN_WIDTH * y + i]
 			= ray->texture.screen_data[(int)floor(j) * 4 * ray->texture.width
-			+ (col * 4) + i];
+			+ (ray->text_c * 4) + i];
 		i++;
 	}
 }
@@ -71,15 +71,14 @@ void	draw_line(t_data *data, t_ray *ray, double j, int y, int col)
 void	draw_texture(t_data *data, t_ray *ray, int texture)
 {
 	double	incre;
-	int		col;
 	int		y;
 	double	j;
 
 	incre = calculate_incre(ray->wall_h, ray->texture.height);
-	col = floor((int)((int) ray->texture.width
+	ray->text_c = floor((int)((int) ray->texture.width
 				* (ray->x + ray->y)) % ray->texture.width);
-	if (texture == 2 || texture == 1)
-		col = ray->texture.width - col;
+	if (texture == 0 || texture == 3)
+		ray->text_c = ray->texture.width - ray->text_c;
 	j = 0;
 	if (ray->wall_h > WIN_HEIGHT)
 		j += incre * (ray->wall_h / 2 - (WIN_HEIGHT / 2));
@@ -88,7 +87,7 @@ void	draw_texture(t_data *data, t_ray *ray, int texture)
 	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
 	while (ray->wall_h > 0)
 	{
-		draw_line(data, ray, j, y, col);
+		draw_line(data, ray, j, y);
 		ray->wall_h--;
 		y++;
 		j = incre + j;

@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/06 16:22:25 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:55:55 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ void	ray_size(t_ray *ray, t_data *data)
 {
 	ray->distance = sqrt(pow(data->player_x - ray->x, 2)
 			+ pow(data->player_y - ray->y, 2));
-	ray->distance = ray->distance * cos(ray->angle * (PI / 180)
-			-data->dir_x * (PI / 180));
+	if (data->aqua == 0)
+	{
+		ray->distance = ray->distance * cos(ray->angle * (PI / 180)
+				- data->dir_x * (PI / 180));
+	}
 	ray->wall_h = floor((WIN_HEIGHT / 2) / ray->distance);
 	draw_ray(ray, data);
 }
