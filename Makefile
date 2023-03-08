@@ -6,7 +6,7 @@
 #    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/03/06 13:26:42 by slord            ###   ########.fr        #
+#    Updated: 2023/03/08 15:43:32 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -f
 LIBFT = include/libft/libft.a
 LIBFT_PATH = include/libft/
 
-SRCS = src/cub3d.c \
+SRCS = src/cube.c \
 		src/error.c \
 		src/parsing_prime.c \
 		src/parsing_secunde.c \

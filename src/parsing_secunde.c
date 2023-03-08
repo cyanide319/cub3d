@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 15:56:30 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:59:00 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int	*split_rgb(char *str)
 	{
 		free(array);
 		free(split);
+		free(array);
 		free_tab(&nb);
 		return (NULL);
 	}
