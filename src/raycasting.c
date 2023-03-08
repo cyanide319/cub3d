@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:38:11 by slord             #+#    #+#             */
-/*   Updated: 2023/03/02 18:51:08 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:22:25 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ int	texture_selection(t_ray *ray)
 	int			x;
 	int			y;
 	static int	texture = 0;
-	//static pour eviter le changement de couleur au bout des murs.
 
 	x = (int) floor(ray->x - ray->cos);
 	y = (int) floor(ray->y - ray->sin);
-
 	if (x < floor(ray->x) && y == floor(ray->y))
 		texture = 3;
 	else if (x > floor(ray->x) && y == floor(ray->y))
@@ -32,6 +30,7 @@ int	texture_selection(t_ray *ray)
 		texture = 0;
 	return (texture);
 }
+
 void	clear_img_array(t_data *data)
 {
 	int	i;
@@ -46,17 +45,9 @@ void	clear_img_array(t_data *data)
 
 void	draw_ray(t_ray *ray, t_data *data)
 {
-	int	i;
-	int	x;
-	int	y;
-	int texture;
+	int	texture;
 
-	i = 0;
-	x = ray->position;
 	texture = texture_selection(ray);
-	if (ray->wall_h > WIN_HEIGHT)
-		ray->wall_h = WIN_HEIGHT;
-	y = (WIN_HEIGHT / 2) - (ray->wall_h / 2);
 	if (texture == 0)
 		ray->texture = data->text_w;
 	else if (texture == 1)
@@ -65,16 +56,15 @@ void	draw_ray(t_ray *ray, t_data *data)
 	ray->texture = data->text_e;
 	else if (texture == 3)
 		ray->texture = data->text_n;
-	draw_texture(data, ray);
-	mlx_put_image_to_window(data->mlx, data->window, data->img.pointer, 0, 0);
+	draw_texture(data, ray, texture);
 }
 
 void	ray_size(t_ray *ray, t_data *data)
 {
-	ray->distance = sqrt(pow(data->player_x - ray->x, 2) + \
-	pow(data->player_y - ray->y, 2));
-	ray->distance = ray->distance * cos(ray->angle * (PI / 180) - \
-	data->dir_x * (PI / 180));
+	ray->distance = sqrt(pow(data->player_x - ray->x, 2)
+			+ pow(data->player_y - ray->y, 2));
+	ray->distance = ray->distance * cos(ray->angle * (PI / 180)
+			-data->dir_x * (PI / 180));
 	ray->wall_h = floor((WIN_HEIGHT / 2) / ray->distance);
 	draw_ray(ray, data);
 }
@@ -93,7 +83,7 @@ void	raycasting(t_data *data)
 		ray.y = data->player_y;
 		ray.cos = cos(ray.angle * (PI / 180)) / (double) 500;
 		ray.sin = sin(ray.angle * (PI / 180)) / (double) 500;
-		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] 
+		while (data->map->map[(int)floor(ray.y)][(int) floor(ray.x)]
 			&& data->map->map[(int)floor(ray.y)][(int) floor(ray.x)] == '0')
 		{
 			ray.x += ray.cos;

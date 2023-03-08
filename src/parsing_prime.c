@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_prime.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:51:31 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 13:13:08 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,21 @@ int	get_map_data(t_map *map)
 	return (0);
 }
 
-int	parsing(t_map *map, char *argv)
+int	parsing(t_data *data, char *argv)
 {
 	if (check_file_format(argv) < 0)
-		return (print_error(map, "Bad file format. Must be .cub"));
-	if (open_map(map, argv) < 0 || get_map(map) < 0)
-		return (print_error(map, "Bad file."));
-	if (get_map_data(map) < 0 || parse_colors(map) < 0 || copy_map(map) < 0)
-		return (print_error(map, "Your fucking map is fucking wrong."));
-	if (check_texture_files(map) < 0)
-		return (print_error(map, "Bad texture file."));
-	if (check_frst_lines(map) < 0 || check_valid_map(map) < 0
-		|| check_components(map) < 0)
-		return (print_error(map, "Map invalid."));
-	if (find_player(map) < 1)
-		return (print_error(map, "Too many or not enough player."));
+		return (print_error(data, "Bad file format. Must be .cub"));
+	if (open_map(data->map, argv) < 0 || get_map(data->map) < 0)
+		return (print_error(data, "Bad file."));
+	if (get_map_data(data->map) < 0 || parse_colors(data->map) < 0
+		|| copy_map(data->map) < 0)
+		return (print_error(data, "Your fucking map is fucking wrong."));
+	if (check_texture_files(data->map) < 0)
+		return (print_error(data, "Bad texture file."));
+	if (check_frst_lines(data->map) < 0 || check_valid_map(data->map) < 0
+		|| check_components(data->map) < 0)
+		return (print_error(data, "Map invalid."));
+	if (find_player(data->map) < 1)
+		return (print_error(data, "Too many or not enough player."));
 	return (0);
 }

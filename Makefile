@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+         #
+#    By: slord <slord@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 12:36:25 by tbeaudoi          #+#    #+#              #
-#    Updated: 2023/02/27 18:47:33 by slord            ###   ########.fr        #
+#    Updated: 2023/03/06 13:26:42 by slord            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRCS = src/cub3d.c \
 		src/raycasting.c \
 		src/print.c \
 		src/move.c \
+		src/texture.c \
+		src/move_1.c \
 			 
 OBJS = $(SRCS:.c=.o)
 

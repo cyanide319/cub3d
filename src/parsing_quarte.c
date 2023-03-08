@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quarte.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:39:37 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/02/27 18:03:52 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:16:15 by slord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	find_player(t_map *map)
 				map->player_y = y;
 				map->player_x = x;
 				map->p_orientation = map->map[y][x];
-				map->map[y][x] = 0;
+				map->map[y][x] = '0';
 			}
 			x++;
 		}
