@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_secunde.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 14:22:58 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/03 13:18:17 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:23:23 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*format_string(char *str)
 
 	i = 0;
 	j = 0;
-	ret = ft_calloc(sizeof(char *), ft_strlen(str));
+	ret = ft_calloc(sizeof(char), ft_strlen(str));
 	while (ft_iswhitespace(str[i]) == 1)
 		i++;
 	while (ft_iswhitespace(str[i]) != 1)
@@ -109,7 +109,7 @@ int	*split_rgb(char *str)
 		return (NULL);
 	split = format_string(str);
 	nb = ft_split(split, ',');
-	if (check_digit(nb) != 0 || nb[3])
+	if (check_digit(nb) != 0 || nb[3] || !nb[2] || !nb[1])
 	{
 		free(split);
 		free_tab(&nb);

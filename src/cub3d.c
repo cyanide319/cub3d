@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:06:27 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 14:54:11 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:16:36 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ int	game_over(t_data *data, int exit_code)
 	j = 0;
 	if (exit_code != 0)
 	{
-		mlx_destroy_image(data->mlx, data->text_e.pointer);
-		mlx_destroy_image(data->mlx, data->text_w.pointer);
-		mlx_destroy_image(data->mlx, data->text_n.pointer);
-		mlx_destroy_image(data->mlx, data->text_s.pointer);		
+		if(data->text_e.pointer != NULL)
+			mlx_destroy_image(data->mlx, data->text_e.pointer);
+		if(data->text_w.pointer != NULL)
+			mlx_destroy_image(data->mlx, data->text_w.pointer);
+		if(data->text_n.pointer != NULL)
+			mlx_destroy_image(data->mlx, data->text_n.pointer);
+		if(data->text_s.pointer != NULL)
+			mlx_destroy_image(data->mlx, data->text_s.pointer);		
 	}
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
@@ -70,7 +74,7 @@ int	main(int argc, char **argv)
 	init_data(&data, data.map);
 	data.mlx = mlx_init();
 	if (img_init(&data) < 0)
-		return (print_error(&data, "Bad texture file"));
+		game_over(&data, -1);
 	data.window = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3d");
 	player_move(777, &data);
 	mlx_hook(data.window, 2, 0, player_move, &data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_quarte.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:39:37 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/06 16:16:15 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:51:41 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	copy_map(t_map *map)
 	int	i;
 	int	j;
 
-	i = 7;
+	i = 6;
 	while (map->raw_map[i] != NULL)
 		i++;
-	map->map = ft_calloc(sizeof(char *), (i - 6));
-	map->y_max = i - 8;
-	i = 7;
+	map->map = ft_calloc(sizeof(char *), (i - 5));
+	map->y_max = i - 7;
+	i = 6;
 	j = 0;
 	while (map->raw_map[i] != NULL)
 	{
@@ -30,7 +30,7 @@ int	copy_map(t_map *map)
 		i++;
 		j++;
 	}
-	free_tab(&map->raw_map);
+	free_array(&map->raw_map);
 	return (0);
 }
 

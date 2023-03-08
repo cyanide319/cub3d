@@ -6,7 +6,7 @@
 /*   By: tbeaudoi <tbeaudoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:17:46 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 13:13:08 by tbeaudoi         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:54:29 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,45 @@ int	check_file_format(char *str)
 	return (0);
 }
 
-int	get_map(t_map *map)
+
+int	get_heigh(t_map *map)
 {
 	char	*temp;
 	int		i;
 
-	i = 1;
+	i = 0;
 	temp = get_next_line(map->fd);
-	map->raw_map = NULL;
 	if (temp == NULL)
 		return (-1);
 	while (temp != NULL)
 	{
 		if (temp[0] != '\n')
 		{
-			map->raw_map = ft_realloc_tab(map->raw_map, i + 1);
+			i++;
+		}
+		free(temp);
+		temp = get_next_line(map->fd);
+	}
+	free(temp);
+	close (map->fd);
+	return (i);
+}
+
+int	get_map(t_map *map, char *argv)
+{
+	char	*temp;
+	int		i;
+
+	i = 0;
+	map->raw_map = ft_calloc(sizeof(char *), get_heigh(map) + 1);
+	open_map(map, argv);
+	temp = get_next_line(map->fd);
+	if (temp == NULL)
+		return (-1);
+	while (temp != NULL)
+	{
+		if (temp[0] != '\n')
+		{
 			map->raw_map[i] = temp;
 			printf("%s", map->raw_map[i]);
 			i++;
@@ -74,9 +98,9 @@ int	get_map_data(t_map *map)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	while (i < 7)
+	while (i < 6)
 	{
 		j = parse_line(map->raw_map[i]);
 		if (j == 1)
@@ -102,7 +126,7 @@ int	parsing(t_data *data, char *argv)
 {
 	if (check_file_format(argv) < 0)
 		return (print_error(data, "Bad file format. Must be .cub"));
-	if (open_map(data->map, argv) < 0 || get_map(data->map) < 0)
+	if (open_map(data->map, argv) < 0 || get_map(data->map, argv) < 0)
 		return (print_error(data, "Bad file."));
 	if (get_map_data(data->map) < 0 || parse_colors(data->map) < 0
 		|| copy_map(data->map) < 0)

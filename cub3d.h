@@ -6,7 +6,7 @@
 /*   By: slord <slord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:08:17 by tbeaudoi          #+#    #+#             */
-/*   Updated: 2023/03/08 14:53:37 by slord            ###   ########.fr       */
+/*   Updated: 2023/03/08 14:05:02 by tbeaudoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	print_window(t_data *data);
 int		in_char_set(char c, char *char_set);
 int		img_init(t_data *data);
 void	init_data(t_data *data, t_map *map);
+void	dont_look_here(t_map *map);
 int		aquarium(t_data *data);
 int		fish_eye(t_data *data);
 
